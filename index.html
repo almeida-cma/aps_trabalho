@@ -346,13 +346,13 @@
                     <a href="B-Trab_Anvil.pdf" class="btn-link" target="_blank" rel="noopener noreferrer">
                         📘 Ver referência: B-Trab_Anvil.pdf
                     </a>
-                    <a href="#" class="btn-link btn-outline" id="anvilPlaceholderBtn" target="_blank" rel="noopener noreferrer">
-                        🚀 Link da aplicação ANVIL (funcionando)
+                    <a href="B-ANVIL_Diagrama.png" class="btn-link btn-outline" target="_blank" rel="noopener noreferrer">
+                        🖼️ Diagrama de Atividades para ANVIL
                     </a>
                 </div>
                 <div style="margin-top: 12px; background: #eef7f0; padding: 0.5rem 1rem; border-radius: 18px; font-size:0.85rem;">
-                    ⚠️ <strong>Importante:</strong> O README do repositório deve conter o mesmo link da aplicação ANVIL. 
-                    Insira o link real no lugar do placeholder ou mantenha o exemplo funcional demonstrativo.
+                    ⚠️ <strong>Importante:</strong> O README do repositório deve conter o link da aplicação ANVIL funcionando. 
+                    O diagrama de atividades para ANVIL está disponível na imagem <code>B-ANVIL_Diagrama.png</code> (abre em nova aba).
                 </div>
             </div>
         </div>
@@ -378,33 +378,10 @@
         </div>
         <div class="footer-note">
             🧩 Trabalho acadêmico — Análise e Projetos em Sistemas<br>
-            Certifique-se de que os links externos (PDFs de referência) estejam acessíveis para o professor. 
-            Os arquivos <code>A_diagrama.pdf</code> e <code>B-Trab_Anvil.pdf</code> são ilustrativos do enunciado.
+            Certifique-se de que os links externos (PDFs de referência e imagem PNG) estejam acessíveis. 
+            Os arquivos <code>A_diagrama.pdf</code>, <code>B-Trab_Anvil.pdf</code> e <code>B-ANVIL_Diagrama.png</code> são ilustrativos do enunciado e referências.
         </div>
     </div>
 </div>
-
-<script>
-    // Script simples para tornar o link da aplicação ANVIL editável via clique? 
-    // Melhor: direcionar para um placeholder explicativo. 
-    // O aluno deve substituir manualmente o href deste link.
-    // Vamos ajustar com um aviso interativo.
-    const anvilBtn = document.getElementById('anvilPlaceholderBtn');
-    if (anvilBtn) {
-        // Define um href temporário indicando que o estudante deve configurar.
-        anvilBtn.setAttribute('href', 'https://anvil.works/docs#publish-your-app');
-        anvilBtn.addEventListener('click', function(e) {
-            const currentLink = anvilBtn.getAttribute('href');
-            if (currentLink === 'https://anvil.works/docs#publish-your-app') {
-                e.preventDefault();
-                alert("⚠️ ATENÇÃO ALUNO: Substitua este link pelo link público REAL da sua aplicação ANVIL funcionando.\n\nInstrução: publique o app no ANVIL (Share -> Public link) e cole no atributo href do botão 'Link da aplicação ANVIL'.\nLembre-se de também colar este mesmo link no README do seu repositório.");
-            } else {
-                // abre normalmente em nova aba
-                window.open(currentLink, '_blank', 'noopener noreferrer');
-                e.preventDefault();
-            }
-        });
-    }
-</script>
 </body>
 </html>
