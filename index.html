@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabalho Final - Análise e Projetos em Sistemas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9edf2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a2a3a 0%, #0f1a24 100%);
+            color: white;
+            padding: 2rem 2rem 1.8rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: -0.3px;
+            margin-bottom: 0.5rem;
+        }
+
+        .header h1 span {
+            font-weight: 300;
+            color: #ffd966;
+        }
+
+        .header p {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-top: 0.5rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            border-radius: 40px;
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+            margin-top: 0.8rem;
+            font-weight: 500;
+        }
+
+        .content {
+            padding: 2.5rem 2rem 2rem 2rem;
+        }
+
+        .info-card {
+            background: #f8fafc;
+            border-left: 5px solid #2c7da0;
+            padding: 1.2rem 1.5rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+        }
+
+        .info-card h3 {
+            color: #1e3a4d;
+            font-size: 1.2rem;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card h3::before {
+            content: "📌";
+            font-size: 1.2rem;
+        }
+
+        .info-card p {
+            color: #2c3e44;
+            line-height: 1.5;
+            margin-bottom: 0.4rem;
+        }
+
+        .repo-detail {
+            background: #eef2f5;
+            border-radius: 16px;
+            padding: 0.8rem 1.2rem;
+            font-family: monospace;
+            font-size: 0.9rem;
+            word-break: break-all;
+            margin-top: 0.8rem;
+            border: 1px solid #cbd5e1;
+        }
+
+        .tasks {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin: 2rem 0 2rem 0;
+        }
+
+        .task-item {
+            background: white;
+            border-radius: 24px;
+            border: 1px solid #e2e8f0;
+            padding: 1.3rem 1.6rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+        }
+
+        .task-item:hover {
+            border-color: #cbdff2;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .task-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .task-number {
+            background: #1f6392;
+            color: white;
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .task-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0f2b38;
+        }
+
+        .task-desc {
+            color: #334e5c;
+            margin-left: 0.2rem;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            font-size: 0.95rem;
+        }
+
+        .file-info {
+            background: #f1f5f9;
+            border-radius: 14px;
+            padding: 0.6rem 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+            font-family: monospace;
+            margin: 0.3rem 0 0.8rem 0;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #2c7da0;
+            color: white;
+            text-decoration: none;
+            padding: 0.7rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            border: none;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            margin-right: 1rem;
+        }
+
+        .btn-link:hover {
+            background: #1f5e7e;
+            transform: scale(1.02);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #2c7da0;
+            color: #2c7da0;
+        }
+
+        .btn-outline:hover {
+            background: #eef5fa;
+            transform: scale(1.02);
+        }
+
+        .form-section {
+            margin: 2rem 0 1rem 0;
+            background: #fef9e6;
+            border-radius: 24px;
+            padding: 1.3rem 1.8rem;
+            border: 1px solid #ffe6b3;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .form-section p {
+            font-weight: 500;
+            color: #7a5c2c;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-button {
+            background: #ffb347;
+            color: #2d2b1f;
+            padding: 0.7rem 1.6rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+
+        .form-button:hover {
+            background: #ffa01e;
+            transform: translateY(-1px);
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px dashed #cad6e3;
+            font-size: 0.8rem;
+            color: #5c6f87;
+        }
+
+        @media (max-width: 680px) {
+            .container {
+                border-radius: 24px;
+            }
+            .content {
+                padding: 1.5rem;
+            }
+            .task-title {
+                font-size: 1.1rem;
+            }
+            .btn-link {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>📐 Trabalho de <span>Análise e Projetos em Sistemas</span></h1>
+        <p>Modelagem UML · Documentação Técnica · Publicação ANVIL</p>
+        <div class="badge">🔗 Repositório: Trabalho_Final_UML</div>
+    </div>
+
+    <div class="content">
+        <div class="info-card">
+            <h3>Orientações para entrega</h3>
+            <p>✅ Trabalho em <strong>DUPLA</strong> ou <strong>INDIVIDUAL</strong><br>
+            ✅ Repositório nomeado como <strong>"Trabalho_Final_UML"</strong><br>
+            ✅ Conter exatamente <strong>2 arquivos:</strong> <code>diagrama.xml</code> e <code>manual_anvil.pdf</code><br>
+            ✅ README do repositório deve conter o <strong>link da aplicação ANVIL funcionando</strong><br>
+            ✅ Envio final via formulário obrigatório</p>
+            <div class="repo-detail">
+                📁 <strong>Estrutura esperada no repositório:</strong><br>
+                /Trabalho_Final_UML<br>
+                ├── diagrama.xml<br>
+                ├── manual_anvil.pdf<br>
+                └── README.md (com link ANVIL ativo)
+            </div>
+        </div>
+
+        <div class="tasks">
+            <!-- ITEM 1: Diagrama de Atividades -->
+            <div class="task-item">
+                <div class="task-header">
+                    <div class="task-number">1</div>
+                    <div class="task-title">Diagrama de Atividades (UML)</div>
+                </div>
+                <div class="task-desc">
+                    Elaborar diagrama de atividades conforme enunciado da disciplina. O arquivo gerado deve ser exportado no formato <strong>XML</strong> com o nome <strong>diagrama.xml</strong>.
+                </div>
+                <div class="file-info">
+                    📄 Arquivo esperado: diagrama.xml
+                </div>
+                <div>
+                    <a href="A_diagrama.pdf" class="btn-link" target="_blank" rel="noopener noreferrer">
+                        📎 Abrir referência: A_diagrama.pdf
+                    </a>
+                    <span style="font-size:0.8rem; color:#4a6272;"> (enunciado/modelo)</span>
+                </div>
+                <div style="margin-top: 12px;">
+                    <span style="background:#eef2ff; padding:0.2rem 0.8rem; border-radius:30px; font-size:0.75rem;">💡 Exporte seu diagrama como XML → diagrama.xml</span>
+                </div>
+            </div>
+
+            <!-- ITEM 2: Documentação + Aplicação ANVIL -->
+            <div class="task-item">
+                <div class="task-header">
+                    <div class="task-number">2</div>
+                    <div class="task-title">Documentação & Aplicação ANVIL</div>
+                </div>
+                <div class="task-desc">
+                    Elaborar documentação completa no formato PDF (pode ser Google Docs convertido). Nome do arquivo: <strong>manual_anvil.pdf</strong>.<br>
+                    Além disso, a aplicação deverá estar <strong>funcionando na plataforma ANVIL</strong> com link público publicado.
+                </div>
+                <div class="file-info">
+                    📄 Arquivo de documentação: manual_anvil.pdf &nbsp;|&nbsp; 🌐 Aplicação ANVIL (link funcional)
+                </div>
+                <div>
+                    <a href="B-Trab_Anvil.pdf" class="btn-link" target="_blank" rel="noopener noreferrer">
+                        📘 Ver referência: B-Trab_Anvil.pdf
+                    </a>
+                    <a href="#" class="btn-link btn-outline" id="anvilPlaceholderBtn" target="_blank" rel="noopener noreferrer">
+                        🚀 Link da aplicação ANVIL (funcionando)
+                    </a>
+                </div>
+                <div style="margin-top: 12px; background: #eef7f0; padding: 0.5rem 1rem; border-radius: 18px; font-size:0.85rem;">
+                    ⚠️ <strong>Importante:</strong> O README do repositório deve conter o mesmo link da aplicação ANVIL. 
+                    Insira o link real no lugar do placeholder ou mantenha o exemplo funcional demonstrativo.
+                </div>
+            </div>
+        </div>
+
+        <!-- SUBMISSÃO DO FORMULÁRIO -->
+        <div class="form-section">
+            <p>📬 <strong>Envio oficial do trabalho</strong> — Após colocar os arquivos no repositório, preencha o formulário obrigatório:</p>
+            <a href="https://forms.gle/T9QSe3PyEpru3t538" class="form-button" target="_blank" rel="noopener noreferrer">
+                ✨ Acessar Formulário de Entrega ✨
+            </a>
+        </div>
+
+        <!-- DICAS/RECAP -->
+        <div style="background:#eef2fa; border-radius: 20px; padding: 1rem 1.5rem; margin-top: 1rem;">
+            <p style="font-weight:600; margin-bottom:8px;">📌 Passo a passo resumido:</p>
+            <ol style="margin-left: 1.2rem; line-height:1.5; color:#2c4b5c;">
+                <li>Criar repositório privado/público chamado <strong>Trabalho_Final_UML</strong> (GitHub, GitLab, etc.)</li>
+                <li>Adicionar os arquivos: <code>diagrama.xml</code> + <code>manual_anvil.pdf</code></li>
+                <li>Publicar aplicação funcional no ANVIL → copiar link público</li>
+                <li>No arquivo <strong>README.md</strong> do repositório, colar o link do ANVIL (funcionando)</li>
+                <li>Enviar o link do repositório através do formulário: <a href="https://forms.gle/T9QSe3PyEpru3t538" target="_blank">https://forms.gle/T9QSe3PyEpru3t538</a></li>
+            </ol>
+        </div>
+        <div class="footer-note">
+            🧩 Trabalho acadêmico — Análise e Projetos em Sistemas<br>
+            Certifique-se de que os links externos (PDFs de referência) estejam acessíveis para o professor. 
+            Os arquivos <code>A_diagrama.pdf</code> e <code>B-Trab_Anvil.pdf</code> são ilustrativos do enunciado.
+        </div>
+    </div>
+</div>
+
+<script>
+    // Script simples para tornar o link da aplicação ANVIL editável via clique? 
+    // Melhor: direcionar para um placeholder explicativo. 
+    // O aluno deve substituir manualmente o href deste link.
+    // Vamos ajustar com um aviso interativo.
+    const anvilBtn = document.getElementById('anvilPlaceholderBtn');
+    if (anvilBtn) {
+        // Define um href temporário indicando que o estudante deve configurar.
+        anvilBtn.setAttribute('href', 'https://anvil.works/docs#publish-your-app');
+        anvilBtn.addEventListener('click', function(e) {
+            const currentLink = anvilBtn.getAttribute('href');
+            if (currentLink === 'https://anvil.works/docs#publish-your-app') {
+                e.preventDefault();
+                alert("⚠️ ATENÇÃO ALUNO: Substitua este link pelo link público REAL da sua aplicação ANVIL funcionando.\n\nInstrução: publique o app no ANVIL (Share -> Public link) e cole no atributo href do botão 'Link da aplicação ANVIL'.\nLembre-se de também colar este mesmo link no README do seu repositório.");
+            } else {
+                // abre normalmente em nova aba
+                window.open(currentLink, '_blank', 'noopener noreferrer');
+                e.preventDefault();
+            }
+        });
+    }
+</script>
+</body>
+</html>
